@@ -1,2 +1,2 @@
 # gabbyyli.github.io
-website
+Gabrielle Yangqing Li's personal website
