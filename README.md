@@ -1,0 +1,53 @@
+Github page archive
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body {
+			margin: 25px 100px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Gabrielle Yangqing Li's personal page</h1>
+
+<h3><img align="right" height="400" src="gabby.jpg"> </h3>
+	
+		<p>I am a third-year math PhD student at the University of Illinois Urbana-Champaign. My research interest lies in homotopy theory.
+			I obtained B.A. in Mathematics with a minor in Music from Wellesley College in December 2021. 
+	  	<p>My CV is <a href="https://drive.google.com/file/d/1aRy4UVwYS0fqyiZT54i0A9A0v-ulDYSe/view?usp=sharing" target="_blank">here</a>.</p>
+
+ 	<h2>Contact</h2>
+		<p>Email: yl106(at)illinois(dot)com</p>
+
+    		<p>Office: CH B4</p>
+
+	<h2>Teaching</h2>
+	
+		<p>I will be teaching MATH 241 Calculus III in fall 2024.</p> 
+		<p>I was not teaching 2022 - 2024. I am currently supported by the Illinois Distinguished Fellowship. </p> 
+
+	
+	<h2>Expository writing/talks</h2>
+		<p> The Construction of an Adams Operation on truncated Brown--Peterson spectrum </a>. Telescope Conjecture Learning Seminar, Spring 2024<p>
+		<p> Galois Extension in Chromatic Homotopy Theory<n> </a>. UIUC Graduate Homotopy Theory Seminar, Spring 2024<p>
+		<p><a href="https://yigalkamel.web.illinois.edu/equivariantAlgebra.pdf" target="_blank"> Equivariant Algebras and RO(G)-graded Cohomology Theories </a>. Equivariant Homotopy Theory Learning Seminar, Spring 2024 <p>
+		<p><a href="https://drive.google.com/file/d/1jD-DiCPKNWBhvlp04LHgFbwVP5aghrzR/view?usp=sharing" target="_blank">Ambidexterity in Chromatic Homotopy Theory </a>. UIUC Graduate Homotopy Theory Seminar, Fall 2023<p>
+  		<p><a href="https://drive.google.com/file/d/1HTmI2bB134pxzv7UETSjSkjC3NaAv0mC/view?usp=sharing" target="_blank">Dieudonne Module and the Classification of Formal Groups</a>. UIUC Graduate Homotopy Theory Seminar, Spring 2023<p>
+		<p><a href="https://yigalkamel.web.illinois.edu/ChrSp23W9notes.pdf" target="_blank"> An Introduction to Bousfield Localization</a>. Chromatic homotopy theory reading seminar, Spring 2023<p>
+
+	<h2>Stuff from the good old (undergraduate) days</h2>
+  		<p><a href="http://math.uchicago.edu/~may/REU2021/REUPapers/Li,Gabrielle.pdf" target="_blank">The Adams and the Bockstein spectral sequence</a>. UChicago Math REU 2021 (mentored by Prof J.Peter May and Dr. Hana Jia Kong)<p> 
+  		<p><a href="http://math.uchicago.edu/~may/REU2020/REUPapers/Li,Gabrielle.pdf" target="_blank">Generalized bundle theory</a>. UChicago Math REU 2020 (mentored by Prof J.Peter May and Dr. Hana Jia Kong)<p> 
+   		<p><a href="https://drive.google.com/file/d/1PuWLJKY5U6hptNy-E7_sMd0GT5CAzbs4/view?usp=sharing" target="_blank">On Adams's <em>the non-existence of elements of Hopf invariant one</em></a>. MIT Kan Seminar (18.919)<p> 
+		<p><a href="https://drive.google.com/file/d/1YkvY3Uy6iTZYKg4bUlrxjrjQ7v0ns9hU/view?usp=sharing" target="_blank">On Serre's <em>Cohomologie modulo 2 des complexes d'Eilenberg-MacLane</em></a>. MIT Kan Seminar (18.919)<p> 
+
+	<h2>Recent travels</h2>
+		<p> <a href="https://www.mfo.de/occasion/2442/www_view" target="_blank"> Oberwolfach Arbeitsgemeinschaft: Algebraic K-Theory and the Telescope Conjecture</a>. Oct 13 - 18, 2024 </p>
+		<p> <a href="https://www.ias.edu/pcmi" target="_blank"> PCMI Graduate Summer School: Motivic Homotopy Theory</a>. July 7 - 27, 2024 </p>
+   <footer>
+		  <p>&copy; 2024 Gabrielle Li
+   </footer>
+  
+</body>
+</html>
