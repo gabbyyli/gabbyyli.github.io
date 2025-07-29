@@ -1,5 +1,3 @@
-Github page archive
-<!DOCTYPE html>
 <html>
 <head>
 	<style>
@@ -11,7 +9,7 @@ Github page archive
 <body>
 	<h1>Gabrielle Yangqing Li's personal page</h1>
 
-<h3><img align="right" height="400" src="gabby.jpg"> </h3>
+<h3><img align="right" height="400" src="IMG_0098.jpg"> </h3>
 	
 		<p>I am a third-year math PhD student at the University of Illinois Urbana-Champaign. My research interest lies in homotopy theory.
 			I obtained B.A. in Mathematics with a minor in Music from Wellesley College in December 2021. 
@@ -47,7 +45,3 @@ Github page archive
 		<p> <a href="https://www.ias.edu/pcmi" target="_blank"> PCMI Graduate Summer School: Motivic Homotopy Theory</a>. July 7 - 27, 2024 </p>
    <footer>
 		  <p>&copy; 2024 Gabrielle Li
-   </footer>
-  
-</body>
-</html>
