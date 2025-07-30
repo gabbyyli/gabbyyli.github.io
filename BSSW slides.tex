@@ -1,0 +1,301 @@
+\documentclass{beamer}
+\usepackage{amsmath,amsthm,amssymb,graphicx,bbm}
+\usepackage{tikz-cd}
+\usepackage[all,arc]{xy}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{prob}{Problem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{cons}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newcommand{\colim}{\operatorname{colim}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\LC}{\operatorname{LC}}
+\newcommand{\Fun}{\operatorname{Fun}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Sp}{\operatorname{Sp}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Alg}{\operatorname{Alg}}
+\newcommand{\CAlg}{\operatorname{CAlg}}
+\newcommand{\pet}{\operatorname{pro\acute{e}t}}
+\newcommand{\et}{\operatorname{\acute{e}t}}
+\newcommand{\CR}{\operatorname{CRing}}
+\newcommand{\CHaus}{\operatorname{CHaus}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\St}{\operatorname{St}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\cts}{\operatorname{cts}}
+\newcommand{\CSpec}{\operatorname{Spec^{cons}_{\textit{T(n)}}}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Perf}{\operatorname{Perf_\textit{k}}}
+\newcommand{\CC}{\operatorname{\mathcal{C}}}
+\newcommand{\Cc}{\operatorname{\mathbb{C}}}
+\newcommand{\mm}{\operatorname{\mathcal{m}}}
+\newcommand{\OO}{\operatorname{\mathcal{O}}}
+\newcommand{\ZZ}{\operatorname{\mathbb{Z}}}
+\newcommand{\QQ}{\operatorname{\mathbb{Q}}}
+\newcommand{\uu}{\operatorname{\mathbbm{1}}}
+\newcommand{\PP}{\operatorname{\mathbb{P}}}
+\newcommand{\FF}{\operatorname{\mathbb{F}}}
+\newcommand{\GG}{\operatorname{\mathbb{G}}}
+\newcommand{\EE}{\operatorname{\mathbb{E}}}
+\newcommand{\SSS}{\operatorname{\mathbb{S}}}
+\newcommand{\WW}{\operatorname{\mathbb{W}}}
+\newcommand{\TT}{\operatorname{\mathbb{T}}}
+\newcommand{\HH}{\operatorname{\mathcal{H}}}
+
+
+%Information to be included in the title page:
+\title{Pro-\'etale cohomology of Drinfeld's symmetric space}
+\usetheme{Madrid}
+\author{Gabrielle Li}
+\institute{UIUC Arithmetic and chromatic learning seminar}
+\date{12/04/2024}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Outline}
+\begin{enumerate}
+\item Logarithm exact sequence
+\item Steinberg representations
+\item Some results from Colmez--Dospinescu--Niziol
+\item Computing $H^i_{\pet}(\HH_C^{n - 1}, \OO^{**})$
+\item Computing invariant module
+\end{enumerate}
+Goal of this talk: $$H^0(\Pi_n, \St_1(\QQ_p/\ZZ_p)^*) \cong H^0(\Pi_n, H^1_{\pet}(\HH_C^{n - 1}, \OO^{**})).$$
+We will focus on $H^i(\Pi_n, H^1_{\pet}(\HH_C^{n - 1}, \OO^{**})$ for $i = 1$. The main reference \cite{24} contains results of greater generality.
+\end{frame}
+
+\begin{frame}
+\frametitle{Recollection}
+\begin{enumerate}
+\item $\HH^{n - 1}_C$ = $\PP_C^{n - 1}\backslash\QQ_p\text{-rational hyperplanes}$ for $C$ the completion of $\overline{\QQ_p}$.
+\item $\Gamma_{\QQ_p} = \Gal(\overline{\QQ_p}), \Pi_n = \Gamma_{\QQ_p} \times \GL_n(\ZZ_p)$
+\item Fundamental exact sequence: 
+$$0 \to H^1_{\cts}(\GG_1, A_1^{**}) \xrightarrow{\det^*} H^1_{\cts}(\GG_n, A_n^{**}) \xrightarrow{b} H^1_{\pet}(\HH^{n - 1}_C, \OO^{**})^{\Pi_n}$$for $(n ,p) \neq (2, 2)$
+$$0 \to H^1_{\cts}(\GG_1, A_1^{**}) \oplus \ZZ/2 \xrightarrow{\det^* \oplus \hat{\alpha}} H^1_{\cts}(\GG_2, A_2^{**}) \xrightarrow{b} H^1_{\pet}(\HH^{n - 1}_C, \OO^{**})^{\Pi_n}$$for $(n ,p) = (2, 2)$.
+	
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Notation: the Tate twist}
+$\QQ_p(1): $ the $1$-th Tate twist of $\QQ_p$. Topologically, this is $\QQ_p$, but the action of $\Gal(\overline{\QQ_p}/\QQ_p)$ factors through $\Gal(\QQ_p(\mu_{p^\infty})/\QQ_p) \cong \ZZ_p^\times$.
+
+More explicitly, we have the cyclotomic character map $$\chi: \Gal(\overline{\QQ_p}/\QQ_p) \to  \Gal(\QQ_p(\mu_{p^\infty})/\QQ_p) \cong \ZZ_p^\times$$ by restriction, and the right hand side act on the vector space $\QQ_p$. Thus, we obtain a 1-dimensional representation of $\Gal(\overline{\QQ_p}/\QQ_p)$ over $\QQ_p$, which we denote as the Tate twist $\QQ_p(1)$. 
+
+We can define $\ZZ_p(1)$ using a short exact sequence \begin{equation} \label{Zpi}
+ 	0 \to \ZZ_p(1) \to \QQ_p(1) \to \mu_{p^\infty} \to 0.
+ \end{equation}
+\end{frame}
+
+\begin{frame}
+\frametitle{Logarithm exact sequence}
+\begin{lem}[Logarithm exact sequence, \cite{24} 4.2.1] Let $X$ be a rigid-analytic variety. There is an exact sequence of sheaves of condensed abelian groups on the (pro-)\'etale site of $X$:
+
+\begin{equation} \label{Loges}
+	0 \to \mu_{p^{\infty}} \to \OO^{**} \xrightarrow{\log} \OO \to 0
+\end{equation}
+where $\mu_{p^{\infty}}$ is the sheaf of $p$-th roots of unity. 
+\end{lem}
+We want to commpute $H_{\pet}^1(\HH_C^{n - 1}, \OO^{**})$. The logarithm exact sequence allows us to approach this via computing $H_{\pet}^1(\HH_C^{n - 1}, \mu_{p^{\infty}})$. The short exact sequence $$0 \to \ZZ_p(1) \to \QQ_p(1) \to \mu_{p^\infty} \to 0$$ further reduces our task to computing $H_{\pet}^1(\HH_C^{n - 1}, \QQ_p(1))$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Steinberg representation I}
+For a profinite set $S = \lim S_i$ and a ring $A$, let $\LC(S, A)$ be the locally constant function on $S$ with values in $A$. If there is a topology on $A$, then we give $LC(S, A) = \lim LC(S_i, A)$ the colimit topology. 
+
+\begin{definition}[Steinberg representation] We define
+	$$\St_1(A) = \frac{\LC(\PP^{n - 1}(\QQ_p), A)}{A}.$$ There is a continuous action of $\GL_n(\QQ_p)$ on $\St_1(A)$.
+\end{definition}
+Definitions and results for $\St_r$ could be found in the main paper.
+\end{frame}
+
+\begin{frame}
+\frametitle{Steinberg representation II}
+Let $\St_1(A)^*$ denote the continuous $A$-module homomorphisms $$\St_1(A) \to A.$$ For $l, l' \in \PP^{n - 1}(\QQ_p)$, we view $\delta_l - \delta_{l'}$ as an element of $\St_1(A)^*$, where $\delta$ denotes the evaluation map on $l$.
+
+\begin{defn}[$\St_1(\QQ_p/\ZZ_p)^*$]
+	We define the $\GL_n(\QQ_p)$-module $\St_r(\QQ_p/\ZZ_p)^*$ using the exact sequence 
+	\begin{equation}\label{steinQZ}
+	0 \to \St_1(\ZZ_p)^* \to \St_1(\QQ_p)^* \to \St_1(\QQ_p/\ZZ_p)^* \to 0.
+	\end{equation}
+	\end{defn}
+
+Note that this definition is ad-hoc as $\QQ_p/\ZZ_p$ is not a ring.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Steinberg representation III}
+\begin{lem}[\cite{24} 5.1.2]
+	For $n \geq 2$, the subset of $\St_1(\QQ_p/\ZZ_p)^*$ fixed by $\GL_n(\ZZ_p) \subset \GL_n(\QQ_p)$ is a free $\ZZ_p$-module of rank 1. 
+\end{lem}
+	Taking the $\GL_n(\ZZ_p)$-fixed points, we obtain an injective boundary map associated with the short exact sequence \ref{steinQZ}: $$\partial: H^0(\GL_n(\ZZ_p), \St_1(\QQ_p/\ZZ_p)^*) \to H^1(\GL_n(\ZZ_p), \St_1(\ZZ_p)^*). $$
+\begin{lem}[\cite{24} 5.1.4]
+	Let $\mu$ be the generator of $H^0(\GL_n(\ZZ_p), \St_1(\QQ_p/\ZZ_p)^*)$. Then $\partial(\mu) \in H^1(\GL_n(\ZZ_p), \St_1(\ZZ_p)^*)$ is represented by the cocycle
+	$$g \mapsto \delta_l - \delta_{g(l)}$$ for $g \in \GL_n(\ZZ_p)$.
+\end{lem}
+\end{frame}
+
+\begin{frame}
+\frametitle{CDN: \'Etale cohomology I}
+	\begin{defn}We define 
+	$$ H^i_{\et}(X, \ZZ_p) = \lim H^i_{\et}(X, \underline{\ZZ/p^n\ZZ})$$
+	$$ H^i_{\et}(X, \QQ_p) = H^i_{\et}(X, \ZZ_p) \otimes_{\ZZ_p} \QQ_p$$
+\end{defn}
+Note that this is an ad-hoc definition souped up from the constant sheaf $\underline{\ZZ/p^n\ZZ}$ on $X_{\et}$. We do have a constant sheaf $\QQ_p$ on $X_{\pet}$, but $$H^i_{\et}(X, \QQ_p) \to H^i_{\pet}(X, \QQ_p)$$ is not always an isomorphism. 
+\end{frame}
+
+\begin{frame}
+\frametitle{CDN: \'Etale cohomology II}
+
+Consider the two short exact sequence 
+	\[ \xymatrix{0 \ar[r] & \mu_{p^{n + 1}} \ar[r] \ar[d] & \OO^* \ar[r]^{(-)^{p^{n + 1}}} \ar[d]^{(-)^p} & \OO^* \ar[r] \ar[d] & 0 \\ 0 \ar[r] & \mu_{p^{n}} \ar[r] & \OO^* \ar[r]^{(-)^{p^{n}}} & \OO^* \ar[r] & 0}  \]
+	Taking limits along the vertical maps, we get another short exact sequence, we get \begin{equation} \label{xpes}
+ 	0 \to \ZZ_p(1) \to \lim_{\leftarrow(-)^p}\OO^* \to \OO^* \to 0.
+ \end{equation}
+\begin{defn}[Kummer map $\kappa$]
+	We define $$\kappa: H_{et}^{0}(\HH_C^{n - 1}, \OO^*) \to H_{et}^{1}(\HH_C^{n - 1}, \ZZ_p(1))$$ be the connecting homomorphism. 
+\end{defn}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{CDN: \'Etale cohomology III}
+\label{CDNr}
+\begin{thm}[Colmez--Dospinescu--Niziol]
+	There is a $\Gamma_{\QQ_p} \times \GL_n(\QQ_p)$-equivariant isomorphism $$r_1: \St_1(\ZZ_p)^* \to H_{\et}^1(\HH_C^{n - 1}, \ZZ_p(1)).$$ This is given by $$r_1(\delta_{l_1} - \delta_{l_2}) = \kappa(l_1/l_2).$$
+\end{thm}
+
+\end{frame}
+
+\begin{frame}%TODO: Simplify this! %TODO: colimit of SES
+\frametitle{CDN: Pro-\'etale cohomology I}
+For a rigid space $X$ over $C$, by taking the inverse limit along $\times p$ map, the short exact sequence on $X_{\pet}$ of sheaves $$0 \to \mu_{p^{\infty}} \to \OO^{**} \xrightarrow{\log} \OO \to 0$$ gives another short exact sequence $$0 \to \QQ_p(1) \to \lim_{\leftarrow \times p}\OO^{**} \xrightarrow{\log '} \OO \to 0.$$ There is a boundary map $$\partial: \OO[-1] \to \QQ_p(1).$$
+We have a spectral sequence $$H_{\et}^1(X, \Omega^j(-j)) \Rightarrow H^{1 + j}_{\pet}(X, \OO)$$ where $\Omega^1$ denotes the sheaf of differential 1-forms. 
+In our case $X = \HH_C^{n - 1}$, the coherent sheaves of differential $j$-forms are acyclic, so we get $$H^1_{\pet}(X, \OO) \cong \Omega^1(X)(-1).$$ 
+\end{frame}
+
+\begin{frame}
+\frametitle{CDN: Pro-\'etale cohomology II}
+\begin{defn}[$\exp$ map] We define
+ 	$$\exp: \Omega^0(X)(0) \to H^1_{\pet}(X, \QQ_p(1)).$$ 
+ \end{defn}
+
+
+\begin{thm}[Colmez--Dospinescu--Niziol]\label{CDNform}
+$\label{524}$
+	There is a $\Gamma_{\QQ_p} \times \GL_n(\QQ_p)$-equivariant exact sequence of $\QQ_p$-vector space	
+	$$0 \to \frac{\Omega^{0}(\HH_C^{n - 1})}{\ker d} \xrightarrow{\exp} H^1_{\pet}(\HH_C^{n - 1}, \QQ_p(1)) \to \St_1(\QQ_p)^* \to 0$$
+\end{thm}
+This theorem exhibits the pro-\'etale cohomology of $\HH_C^{n - 1}$ as an extension of a space of differential forms by the dual of a Steinberg representation.
+
+Our goal is to compute $H^1_{\pet}(\HH_C^{n - 1}, \OO^{**})$, so we need to compute $H^1_{\pet}(\HH_C^{n - 1}, \mu_{p^\infty})$ in order to use the logarithm exact sequence.
+\end{frame}
+
+\begin{frame}
+\frametitle{CDN: Pro-\'etale cohomology III}
+
+\begin{cor}[\cite{24} 5.2.5]\label{CDNr}
+	There is a $\Gamma_{\QQ_p} \times \GL_n(\QQ_p)$-equivariant exact sequence
+	$$0 \to \frac{\Omega^{0}(\HH_C^{n - 1})}{\ker d} \xrightarrow{\exp '} H^1_{\pet}(\HH_C^{n - 1}, \mu_{p^\infty}) \to \St_1(\QQ_p/\ZZ_p)^* \to 0$$
+\end{cor}
+
+
+\begin{proof}
+	We have a map of exact sequences \[ \xymatrix{& 0 \ar[r] \ar[d] & H^1_{\pet}(\HH_C^{n - 1}, \ZZ_p(1)) \ar[r]^-{\cong} \ar[d] & \St_1(\ZZ_p)^* \ar[r] \ar[d] & 0 \\ 0 \ar[r] & \frac{\Omega^{0}(\HH_C^{n - 1})}{\ker d} \ar[r] & H^1_{\pet}(\HH_C^{n - 1}, \QQ_p(1)) \ar[r] & \St_1(\QQ_p)^* \ar[r] & 0}  \] Snake lemma finishes the proof.\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculation of $\HH_C^{n - 1}$ I}
+We are ready to use the logarithm exact sequence and the previous corollary to deduce our main theorem.
+\begin{thm}[5.3.1]\label{531}
+	We have a short exact sequence $$0 \to \St_1(\QQ_p/\ZZ_p)^*(0) \to H^1_{\pet}(\HH_C^{n - 1}, \OO^{**}) \to \Omega^{1, cl}(\HH_C^{n - 1})(-1) \to 0$$ where $\Omega^{1, cl}$ denotes the sheaf of closed differential $1$-forms on $\HH_C^{n - 1}$.
+\end{thm}
+
+\begin{proof}
+Let $\partial^1: H^1_{\pet}(\HH_C^{n - 1}, \OO) \to H^2_{\pet}(\HH_C^{n - 1}, \mu_{p^\infty})$ be the boundary map of the logarithm exact sequence. From the long exact sequence associated to the logarithm sequence on cohomology, there is a short exact sequence $$0 \to \coker(\partial^0) \to H^1_{\pet}(\HH_C^{n - 1}, \OO^{**}) \to \ker(\partial ^1) \to 0.$$
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculation of $\HH_C^{n - 1}$ II}
+\begin{proof}
+Note that since as $p$ acts on $\OO$ invertibly, the composition $\OO \to \mu_{p^\infty}[1] \to \ZZ_p(1)[2]$ is trivial, and we have a dashed lift \[ \xymatrix{& \OO \ar@{-->}[dl] \ar[d]^{\partial} \\ \QQ_p(1)[1] \ar[r] & \mu_{p^\infty}[1] \ar[r] & \ZZ_p(1)[2]}. \] Therefore, on cohomology level we have $$H^0_{\pet}(\HH_C^{n - 1}, \OO) \to H^1_{\pet}(\HH_C^{n - 1}, \mu_{p^\infty}),$$ which coincides with $$\exp: \Omega^0(\HH_C^{n - 1})(0) \cong H^0_{\pet}(\HH_C^{n - 1}, \OO) \to H^1_{\pet}(\HH_C^{n - 1}, \QQ_p(1)).$$ \end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculation of $\HH_C^{n - 1}$ III}
+\begin{proof}
+We now obtain a diagram of exact sequences
+\[ \xymatrix{ 0 \ar[r] & \Omega^1(\HH_C^{n - 1})(-1) \ar[r]^-{\cong} \ar[d] & H^1_{\pet}(\HH_C^{n - 1}, \OO) \ar[r] \ar[d]^{\partial^1} & 0 \\ 0 \ar[r] & \frac{\Omega^{1}(\HH_C^{n - 1})}{\ker d}(-1) \ar[r]^{\exp '} & H^2_{\pet}(\HH_C^{n - 1}, \mu_{p^\infty}) \ar[r] & \St_2(\QQ_p/\ZZ_p)^*(-1) \ar[d] & 0 \\ & & & 0 }  \]
+
+Snake lemma gives $$\ker(\partial^1) = \Omega^{1, cl}(\HH_C^{n - 1})(-1), \ \coker(\partial^0) = \St_1(\QQ_p/\ZZ_p)^*(0).$$ 
+	
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Invariant module I}
+\begin{cor}[5.3.2]
+	The short exact sequence of pro-\'etale shaves on $\HH_C^{n - 1}$: $$0 \to \ZZ_p(1) \to \lim_{\leftarrow(-)\times p}\OO^{**} \to \OO^{**} \to 0$$ induces short exact sequence of $\Pi_n$-modules for $m \geq 0$:
+	$$0 \to H^m_{\pet}(\HH_C^{n - 1}, \ZZ_p(1)) \to H^m_{\pet}(\HH_C^{n - 1}, \lim_{\leftarrow(-)\times p}\OO^{**}) \to H^m_{\pet}(\HH_C^{n - 1}, \OO^{**})\to 0.$$ In other words, the boundary maps associated with the short exact sequence are 0.
+\end{cor}
+\end{frame}
+
+\begin{frame}%TODO: proof?
+\frametitle{Invariant module II}
+\begin{proof}
+	We need to show that $$H^m_{\pet}({\HH_C^{n -1}}, \lim_{\leftarrow(-)\times p}\OO^{**}) \to H^m_{\pet}({\HH_C^{n -1}}, \OO^{**})$$ is a surjective map. First, note that the map factor as $$H^m_{\pet}({\HH_C^{n -1}}, \lim_{\leftarrow(-)\times p}\OO^{**}) \to \lim_{\leftarrow(-)\times p}H^m_{\pet}({\HH_C^{n -1}}, \OO^{**}) \to H^m_{\pet}({\HH_C^{n -1}}, \OO^{**}).$$ Also we note that the first map is surjective by the Milnor sequence. Theorem \ref{524} exhibits $H^m_{\pet}({\HH_C^{n -1}}, \OO^{**})$ as a $p$-divisible group, so the map from the inverse limit to $H^m_{\pet}({\HH_C^{n -1}}, \OO^{**})$ is surjective.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Invariant module III}
+\begin{cor}[5.3.3]
+	There is a canonical isomorphism $$H^0(\Pi_n, \St_1(\QQ_p/\ZZ_p)^*) \cong H^0(\Pi_n, H^1_{\pet}(\HH_C^{n - 1}, \OO^{**})).$$ Therefore, for $n \geq 2$, we identify $H^0(\Pi_n, H^1_{\pet}(\HH_C^{n - 1}, \OO^{**}))$ as a free $\ZZ_p$-module of rank 1. For $n = 1$, we have $H^0(\Pi_n, H^0_{\pet}(\HH_C^{n - 1}, \OO^{**})) = 0.$
+\end{cor}
+\end{frame}
+
+\begin{frame}%TODO: proof?
+\frametitle{Fix points IV}
+\begin{proof}
+Recall from Theorem \ref{531}, we have a short exact sequence $$0 \to \St_1(\QQ_p/\ZZ_p)^*(0) \to H^1_{\pet}(\HH_C^{n - 1}, \OO^{**}) \to \Omega^{1, cl}(\HH_C^{n - 1})(-1) \to 0$$ which $\Pi_n$ acts on. The action of $\Pi_n$ on $\St_1(\QQ_p/\ZZ_p)$ is through $\GL_n(\ZZ_p)$. First observe the base change $$\Omega^{1, cl}(\HH^{n - 1}_C)(-1) = \Omega^{1, cl}(\HH^{n - 1}) \otimes_{\QQ_p}C(-1)$$ where $\Pi_n$ acts on $C(-1)$, so we get $$H^0(\Gamma_{\QQ_p}, \Omega^{1, cl}(\HH^{n - 1}_C)(-1)) = \Omega^{1, cl}(\HH^{n - 1}) \otimes H^0(\Gamma_{\QQ_p}, C(-1)) = 0.$$ The second isomorphism follows from Theorem 4.4.3 of \cite{23}. Therefore, we obtain the desired isomorphism from the short exact sequence in Theorem \ref{531}. \end{proof}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{References}
+\begin{thebibliography}{999}
+
+\bibitem{24}
+	Tobias Barthel, Tomer Schlank, Nathanial Stapleton, Jared Weinstein.
+  \emph{On Hopkins' Picard Group}, 2024.
+	https://arxiv.org/pdf/2407.20958
+  
+\bibitem{23}
+	Tobias Barthel, Tomer Schlank, Nathanial Stapleton, Jared Weinstein.
+  \emph{On the rationalization of the $K(n)$-local sphere}, 2023.
+  	https://arxiv.org/pdf/2402.00960
+
+\end{thebibliography}
+	
+\end{frame}
+
+
+\end{document}
